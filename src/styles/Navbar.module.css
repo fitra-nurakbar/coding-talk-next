@@ -1,0 +1,12 @@
+.wrap {
+@apply fixed w-full bg-white z-50 shadow-md;
+}
+.header {
+  @apply flex justify-between max-w-[1200px] mx-auto py-5 px-2;
+}
+.header h1 {
+  @apply font-semibold text-xl;
+}
+.header nav {
+     @apply text-sm flex gap-5;
+}

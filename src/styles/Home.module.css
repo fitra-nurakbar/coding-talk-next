@@ -1,0 +1,3 @@
+.article {
+  @apply m-5 flex flex-wrap gap-5;
+}

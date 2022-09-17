@@ -1,0 +1,15 @@
+.footer {
+  @apply bg-white;
+}
+.footer h1 {
+  @apply text-center font-semibold py-5 border-b-2;
+}
+.footerB {
+  @apply flex justify-between;
+}
+.icons {
+  @apply flex gap-5;
+}
+.icons span {
+  @apply p-5 rounded-full bg-slate-300;
+}
