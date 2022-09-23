@@ -1,15 +1,18 @@
 .footer {
-  @apply bg-white;
+  @apply px-2 bg-white border-t-2;
+}
+.wrap {
+  @apply container mx-auto flex justify-between items-center;
 }
 .footer h1 {
-  @apply text-center font-semibold py-5 border-b-2;
+  @apply text-center font-semibold py-5;
 }
 .footerB {
-  @apply flex justify-between;
+  @apply flex justify-between py-5 border-t;
 }
 .icons {
   @apply flex gap-5;
 }
 .icons span {
-  @apply p-5 rounded-full bg-slate-300;
+  @apply w-10 h-10 flex items-center justify-center rounded-full bg-slate-300 hover:border-4 border-slate-500 cursor-pointer;
 }

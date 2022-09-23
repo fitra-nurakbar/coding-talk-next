@@ -8,16 +8,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper";
-import styles from "../styles/Slider.module.css"
+import { Pagination, Autoplay } from "swiper";
+import styles from "../../styles/Slider.module.css"
 
 export default function Slider() {
   return (
      <Swiper
      pagination={{
-       dynamicBullets: true,
+       clickable: true
      }}
-     modules={[Pagination]}
+     autoplay={{ 
+      delay: 4000,
+      }}
+      spaceBetween={50}
+     loop={true}
+     modules={[Pagination, Autoplay]}
      className='mySwiper'>
      <SwiperSlide>
        <section className={styles.slider}>

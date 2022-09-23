@@ -1,0 +1,3 @@
+.wrap {
+  @apply container mx-auto;
+}

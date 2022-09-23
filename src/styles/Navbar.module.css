@@ -1,12 +1,12 @@
-.wrap {
-@apply fixed w-full bg-white z-50 shadow-md;
-}
 .header {
-  @apply flex justify-between max-w-[1200px] mx-auto py-5 px-2;
+  @apply py-5 px-2 fixed z-10 bg-white drop-shadow-md w-full;
+}
+.wrap {
+  @apply container mx-auto flex justify-between items-center;
 }
 .header h1 {
   @apply font-semibold text-xl;
 }
 .header nav {
-     @apply text-sm flex gap-5;
+  @apply hidden md:flex text-sm gap-5;
 }
