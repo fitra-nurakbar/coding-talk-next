@@ -1,5 +1,5 @@
 .header {
-  @apply py-5 px-2 fixed z-10 bg-white drop-shadow-md w-full;
+  @apply p-5 fixed z-10 bg-white drop-shadow-lg w-full;
 }
 .wrap {
   @apply container mx-auto flex justify-between items-center;
@@ -9,4 +9,7 @@
 }
 .header nav {
   @apply hidden md:flex text-sm gap-5;
+}
+.header nav a {
+  @apply text-slate-500 hover:text-black transition-all duration-150;
 }

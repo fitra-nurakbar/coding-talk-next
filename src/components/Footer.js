@@ -1,4 +1,11 @@
 import styles from "../styles/Footer.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faGithub,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -13,9 +20,15 @@ export default function Footer() {
             <p>Copyright 2022</p>
           </div>
           <div className={styles.icons}>
-            <span>A</span>
-            <span>B</span>
-            <span>C</span>
+            <Link href="https://www.instagram.com/fit.tra_/">
+              <a target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>
+            </Link>
+            <Link href="https://www.linkedin.com/in/fitra-nurakbar-5967a8230">
+              <a target="_blank"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+            </Link>
+            <Link href="https://github.com/fitra-nurakbar">
+              <a target="_blank"><FontAwesomeIcon icon={faGithub} /></a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper {
+     @apply bg-slate-500 py-5 !important;
+}
+.swiper-pagination {
+     @apply static !important;
+}
+.swiper-pagination-bullet {
+     @apply sm:w-4 sm:h-4 bg-white opacity-100 !important;
+}
+.swiper-pagination-bullet-active {
+     @apply bg-black !important;
+}

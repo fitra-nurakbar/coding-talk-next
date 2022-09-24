@@ -15,7 +15,7 @@ export default function Slider() {
   return (
      <Swiper
      pagination={{
-       clickable: true
+       clickable: true,
      }}
      autoplay={{ 
       delay: 4000,

@@ -1,9 +1,36 @@
-.article {
-  @apply m-5 flex flex-wrap justify-center items-center gap-y-5 w-full sm:w-3/4;
+.wrap {
+  @apply flex;
 }
-.sideMenu {
-  @apply hidden sm:block m-5 sm:w-1/4;
+.article {
+  @apply my-10 mx-5 sm:mx-0 flex flex-col items-center gap-y-5 w-full sm:w-3/4;
 }
 .card {
-  @apply flex justify-center items-center w-full h-[300px] border-2 rounded-xl;
+  @apply flex flex-col gap-2 w-full border-2 rounded-xl shadow-md px-2 py-4;
+}
+.card h1 {
+  @apply text-lg sm:text-xl text-center font-semibold py-2;
+}
+.card p {
+  @apply text-black/80 text-justify mx-5;
+}
+.card a {
+  @apply text-end;
+}
+.sideMenu {
+  @apply hidden sm:block my-10 sm:ml-5 sm:w-1/4;
+}
+.sideMenu label {
+  @apply font-medium;
+}
+.sideMenu input[type="text"] {
+  @apply focus:outline-none focus:border-slate-500  border-2 rounded-md px-3 py-1 mb-5;
+}
+.sideMenu select {
+  @apply focus:outline-none focus:border-slate-500  border-2 rounded-md px-3 py-1 mb-5;
+}
+.sideMenu textarea {
+  @apply focus:outline-none focus:border-slate-500 border-2 rounded-md px-3 py-1 mb-5;
+}
+.sideMenu input[type="submit"] {
+  @apply transition-all text-white duration-300 py-2 font-bold border-2 border-transparent bg-slate-500 hover:text-slate-500 hover:bg-white hover:border-2 hover:border-slate-500 rounded-md cursor-pointer;
 }

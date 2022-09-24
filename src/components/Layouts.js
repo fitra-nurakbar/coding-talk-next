@@ -10,6 +10,7 @@ export default function Layouts({ title, children }) {
   return (
     <>
       <Head>
+        
         <title>{titlePage}</title>
       </Head>
       <Navbar />

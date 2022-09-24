@@ -1,18 +1,21 @@
 .footer {
-  @apply px-2 bg-white border-t-2;
+  @apply px-5 bg-white border-t-2;
 }
 .wrap {
-  @apply container mx-auto flex justify-between items-center;
+  @apply container mx-auto flex flex-col sm:flex-row flex-wrap justify-between sm:items-center gap-y-5 sm:gap-0;
 }
 .footer h1 {
   @apply text-center font-semibold py-5;
 }
 .footerB {
-  @apply flex justify-between py-5 border-t;
+  @apply py-5 border-t;
+}
+.detail {
+  @apply text-sm text-slate-500;
 }
 .icons {
-  @apply flex gap-5;
+  @apply flex justify-center sm:justify-start gap-2 sm:gap-5;
 }
-.icons span {
-  @apply w-10 h-10 flex items-center justify-center rounded-full bg-slate-300 hover:border-4 border-slate-500 cursor-pointer;
+.icons a {
+  @apply hover:-translate-y-0.5 text-lg w-10 h-10 flex items-center justify-center rounded-full text-white bg-slate-500 border-2  hover:bg-white hover:text-slate-500 hover:border-slate-500 transition-all;
 }
