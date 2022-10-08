@@ -10,8 +10,8 @@ export default function Layouts({ title, children }) {
   return (
     <>
       <Head>
-        
         <title>{titlePage}</title>
+        <link rel="shorcut icon" href="/logo.png" />
       </Head>
       <Navbar />
       <main className={styles.wrap}>{children}</main>
