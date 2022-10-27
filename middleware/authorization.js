@@ -9,8 +9,8 @@ export default function Autorization(req, res) {
     const [authType, authToken] = [authSplit[0], authSplit[1]];
     if (authType !== "Bearer") return res.status(401).end();
 
-    return jwt.verify(authToken, "testingToken", function (err, decoded) {
-      if (err) return res.status(401).end();
+    return jwt.verify(authToken, process.env.SECRET_KEY, function (err, decoded) {
+      if (err) return res.status(403).end();
 
       return resolve(decoded);
     });

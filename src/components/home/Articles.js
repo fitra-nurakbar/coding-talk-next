@@ -1,71 +1,58 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Article.module.css";
+import { authPage } from "../../../middleware/authorizationPage";
+import Router from "next/router";
+import Button from "../Button";
 
-export default function Articles(contoh) {
-  console.log({contoh})
-
-  const [fields, setFields] = useState("");
-  const [article, setArticles] = useState("");
-  const [loading, setLoading] = useState(true);
-  const articles = article.data
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("/api/posts/", {
-        method: "GET",
-        headers: {
-          "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NTEyNTM4NiwiZXhwIjoxNjY1NzMwMTg2fQ.Andp-g3a4-fSYP3EbU6aaqVvJ80RPwo2eCqNUpFgD08",
-        }
-      });
-      const json = await response.json();
-
-      setArticles(json);
-      setLoading(false);
-    };
-    getData();
-  }, []);
-
-  async function getServerSideProps(e) {
+export default function Articles({datas}) {
+  const [posts, setPosts] = useState(datas.posts);
+  const { token } = datas
+  
+  async function deleteHandler(id, e) {
     e.preventDefault();
+    
+    const ask = confirm("Apakah data ini akan dihapus?");
 
-    const create = await fetch("/api/posts/create", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NTEyNTM4NiwiZXhwIjoxNjY1NzMwMTg2fQ.Andp-g3a4-fSYP3EbU6aaqVvJ80RPwo2eCqNUpFgD08", 
-      },
-      body: JSON.stringify(fields),
-    });
+    if (ask) {
+      const deletePost = await fetch("/api/posts/delete/" + id, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      const res = await deletePost.json();
+
+      const postsFiltered = posts.filter((post) => {
+        return post.id !== id && post;
+      });
+
+      setPosts(postsFiltered);
+    }
   }
 
-  function fieldHandler(e) {
-    const target = e.target;
-    const name = target.getAttribute("name");
-
-    setFields({
-      ...fields,
-      [name]: e.target.value,
-    });
+  function editHandler(id) {
+    Router.push(`/posts/edit/${id}`);
   }
+
   return (
     <div className={styles.wrap}>
-      {loading ? (
-        <h1 className='text-center text-5xl w-full'>loading...</h1>
-      ) : (
-        <section className={styles.article}>
-          {articles.map((article, index) => (
-            <div className={styles.card} key={index}>
-              <h1>{article.title}</h1>
-              <p>{article.content}</p>
-              <Link href={`/post/${article.id}`}>
-                <a>Details</a>
-              </Link>
+      <section className={styles.article}>
+        {posts.map((post, index) => (
+          <div className={styles.card} key={index}>
+            <h1>{post.title}</h1>
+            <p>{post.content}</p>
+            <div>
+              <Button onClick={editHandler.bind(this, post.id)}>Edit</Button>
+              <Button className="bg-red-500 text-white" onClick={deleteHandler.bind(this, post.id)}>
+                Delete
+              </Button>
             </div>
-          ))}
-        </section>
-      )}
-      <section className={styles.sideMenu}>
+          </div>
+        ))}
+      </section>
+      {/* <section className={styles.sideMenu}>
         <form onSubmit={getServerSideProps.bind(this)}>
           <div className={styles.card}>
             <h1>CREATE POST</h1>
@@ -76,13 +63,13 @@ export default function Articles(contoh) {
               name={"title"}
               maxLength={"100"}
               placeholder={"Title limit 100 Character"}
-              onChange={fieldHandler.bind(this)}
+              onChange={fieldsHandler.bind(this)}
             />
             <label htmlFor={"category"}>Category :</label>
             <select
               id={"category"}
               name={"category"}
-              onChange={fieldHandler.bind(this)}>
+              onChange={fieldsHandler.bind(this)}>
               <option value={"Technology"}>Technology</option>
               <option>Sport</option>
               <option>Game</option>
@@ -98,7 +85,7 @@ export default function Articles(contoh) {
             <input type={"submit"} value={"POST"} />
           </div>
         </form>
-      </section>
+      </section> */}
     </div>
   );
 }

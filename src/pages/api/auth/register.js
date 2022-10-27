@@ -1,5 +1,6 @@
-import db from "../../../lib/db";
+import db from "../../../../lib/db";
 import bcrypt from "bcryptjs";
+import styles from ".././../../styles/LoginRegister.module.css"
 
 export default async function Handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
@@ -12,7 +13,6 @@ export default async function Handler(req, res) {
     email,
     password: passwordHash,
   });
-
   const registerUser = await db("users").where({ id: inputUser }).first();
 
   res.status(200);

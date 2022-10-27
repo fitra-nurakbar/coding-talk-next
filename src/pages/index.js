@@ -1,28 +1,35 @@
 import Layouts from "../components/Layouts";
 import Articles from "../components/home/Articles";
 import Slider from "../components/home/Slider";
+import { authPage } from "../../middleware/authorizationPage";
 
-export default function Home({data}) {
+export async function getServerSideProps(ctx) {
+  const { token } = await authPage(ctx);
+
+  const postReq = await fetch("http://localhost:3000/api/posts", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const posts = await postReq.json();
+
+  return {
+    props: {
+      token,
+      posts: posts.data,
+    },
+  };
+}
+
+export default function Home(props) {
 
   return (
     <Layouts title='Home'>
       {/* slider */}
       <Slider />
       {/* article */}
-      <Articles contoh={data} />
+      <Articles datas={{ ...props }} />
     </Layouts>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`https://newsapi.org/v2/everything?q=apple&from=2022-09-16&to=2022-09-16&sortBy=popularity&apiKey=e63c0fbdd0c6479c8819d20188f4a4ff`);
-  const data = await res.json();
-
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
-
-  return { props: { data } };
 }

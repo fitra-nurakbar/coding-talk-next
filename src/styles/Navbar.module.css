@@ -1,5 +1,5 @@
 .header {
-  @apply p-5 fixed z-10 bg-white drop-shadow-lg w-full;
+  @apply p-5 fixed top-0 z-10 bg-white drop-shadow-lg w-full;
 }
 .wrap {
   @apply container mx-auto flex justify-between items-center;

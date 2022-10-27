@@ -3,12 +3,13 @@ import Autorization from "../../../../middleware/authorization";
 
 export default async function Handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
-  const auth = Autorization(req, res)
+  
+  const auth = await Autorization(req, res)
 
-  const { title, category, content } = req.body;
+  const { title, kategori_id, content } = req.body;
   const create = await db("posts").insert({
     title,
-    category,
+    kategori_id,
     content,
   });
 

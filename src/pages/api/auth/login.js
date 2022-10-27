@@ -1,11 +1,11 @@
-import db from "../../../lib/db";
+import db from "../../../../lib/db";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export default async function Handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
+  
   const { email, password } = req.body;
-
   const checkUser = await db("users").where({ email }).first();
   if (!checkUser) return res.status(401).end();
 
@@ -17,7 +17,7 @@ export default async function Handler(req, res) {
       id: checkUser.id,
       email: checkUser.email,
     },
-    "testingToken",
+    process.env.SECRET_KEY,
     {
       expiresIn: "7d",
     }
